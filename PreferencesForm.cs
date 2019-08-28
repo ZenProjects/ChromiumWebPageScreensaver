@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Win32;
 using System.Windows.Forms;
 
-namespace pl.polidea.lab.Web_Page_Screensaver
+namespace Web_Page_Screensaver
 {
     using System.Collections.Generic;
     using System.Drawing;
@@ -19,6 +19,10 @@ namespace pl.polidea.lab.Web_Page_Screensaver
         public PreferencesForm()
         {
             InitializeComponent();
+            RemoveExtraTabPages();
+            screenTabControl.TabPages[0].Text = "Mono Screen";
+            screenUserControls = new List<PrefsByScreenUserControl>() { prefsByScreenUserControl1 };
+            LoadValuesForTab(0);
         }
 
         private void PreferencesForm_Load(object sender, EventArgs e)
@@ -147,16 +151,23 @@ namespace pl.polidea.lab.Web_Page_Screensaver
 
         private void readBackValuesFromUI()
         {
-            for (var i = 0; i < screenUserControls.Count; i++)
+            try
             {
-                var currentPrefsUserControl = screenUserControls[i];
-                List<string> urls = (from ListViewItem lvUrlsItem in currentPrefsUserControl.lvUrls.Items
-                    select lvUrlsItem.Text).ToList();
-                prefsManager.SetUrlsForScreen(i, urls);
-                prefsManager.SetRotationIntervalForScreen(i,
-                    (int)currentPrefsUserControl.nudRotationInterval.Value);
-                prefsManager.SetRandomizeFlagForScreen(i, currentPrefsUserControl.cbRandomize.Checked);
-                prefsManager.CloseOnActivity = cbCloseOnActivity.Checked;
+                for (var i = 0; i < screenUserControls.Count; i++)
+                {
+                    var currentPrefsUserControl = screenUserControls[i];
+                    List<string> urls = (from ListViewItem lvUrlsItem in currentPrefsUserControl.lvUrls.Items
+                        select lvUrlsItem.Text).ToList();
+                    prefsManager.SetUrlsForScreen(i, urls);
+                    prefsManager.SetRotationIntervalForScreen(i,
+                        (int) currentPrefsUserControl.nudRotationInterval.Value);
+                    prefsManager.SetRandomizeFlagForScreen(i, currentPrefsUserControl.cbRandomize.Checked);
+                    prefsManager.CloseOnActivity = cbCloseOnActivity.Checked;
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.ToString());
             }
         }
 

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Web_Page_Screensaver
 {
-    using pl.polidea.lab.Web_Page_Screensaver;
+    using Web_Page_Screensaver;
 
     public partial class PrefsByScreenUserControl : UserControl
     {

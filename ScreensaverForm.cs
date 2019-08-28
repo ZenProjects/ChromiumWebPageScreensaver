@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
 
-namespace pl.polidea.lab.Web_Page_Screensaver
+namespace Web_Page_Screensaver
 {
     public partial class ScreensaverForm : Form
     {
