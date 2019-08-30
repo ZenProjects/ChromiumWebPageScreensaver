@@ -8,6 +8,10 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
+//using System.Threading;
+using CefSharp;
+using CefSharp.WinForms;
+using CefSharp.WinForms.Internals;
 
 namespace Web_Page_Screensaver
 {
@@ -38,7 +42,24 @@ namespace Web_Page_Screensaver
             InitializeComponent();
 
             Cursor.Hide();
+
+
         }
+
+        private void OnIsBrowserInitializedChanged(object sender, EventArgs e)
+        {
+            var b = ((CefSharp.WinForms.ChromiumWebBrowser)sender);
+
+            this.InvokeOnUiThreadIfRequired(() =>
+            {
+                //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
+                b.Focus();
+                RotateSite();
+            });
+            
+
+        }
+
 
         public List<string> Urls
         {
@@ -59,6 +80,7 @@ namespace Web_Page_Screensaver
             {
                 if (Urls.Count > 1)
                 {
+
                     // Shuffle the URLs if necessary
                     shuffleOrder = prefsManager.GetRandomizeFlagByScreen(screenNum);
                     if (shuffleOrder)
@@ -81,16 +103,16 @@ namespace Web_Page_Screensaver
                     timer.Interval = prefsManager.GetRotationIntervalByScreen(screenNum) * 1000;
                     timer.Tick += (s, ee) => RotateSite();
                     timer.Start();
+                    
                 }
 
-                // Display the first site in the list
-                RotateSite();
-
                 StartTime = DateTime.Now;
+
             }
             else
             {
                 webBrowser.Visible = false;
+                closeButton.Visible = false;
             }
         }
 
@@ -108,8 +130,8 @@ namespace Web_Page_Screensaver
                 webBrowser.Visible = true;
                 try
                 {
-                    Debug.WriteLine($"Navigating: {url}");
-                    webBrowser.Navigate(url);
+                    webBrowser.Load(url);
+
                 }
                 catch
                 {
@@ -118,6 +140,7 @@ namespace Web_Page_Screensaver
             }
             Application.AddMessageFilter(userEventHandler);
         }
+
 
         private void RotateSite()
         {
@@ -133,19 +156,22 @@ namespace Web_Page_Screensaver
             BrowseTo(url);
         }
 
-        private void HandleUserActivity()
+        private bool HandleUserActivity()
         {
-            if (StartTime.AddSeconds(1) > DateTime.Now) return;
+            if (StartTime.AddSeconds(1) > DateTime.Now) return true;
 
             if (prefsManager.CloseOnActivity)
             {
                 Close();
+                return true;
             }
             else
             {
                 closeButton.Visible = true;
                 Cursor.Show();
             }
+
+            return false;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -156,7 +182,7 @@ namespace Web_Page_Screensaver
 
     public class GlobalUserEventHandler : IMessageFilter
     {
-        public delegate void UserEvent();
+        public delegate bool UserEvent();
 
         private const int WM_MOUSEMOVE = 0x0200;
         private const int WM_MBUTTONDBLCLK = 0x209;
@@ -183,7 +209,7 @@ namespace Web_Page_Screensaver
 
                 if (Event != null)
                 {
-                    Event();
+                    return Event();
                 }
             }
             // Always allow message to continue to the next filter control
