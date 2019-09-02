@@ -43,12 +43,12 @@ steps:
     verbose: # Optional
     #quiet: # Optional
     
-- task: GithubRelease@0 
-  displayName: 'Create GitHub Release'      
-  inputs:
-    gitHubConnection: ChromiumWebPageScreensaverConnection
-    repositoryName: ZenProjects/Chromium-Web-Page-Screensaver
-    tagSource: manual
-    tag: $(Build.BuildNumber)      
-    assets: |
-         $(Build.ArtifactStagingDirectory)/ChromiumWebScreensaver_build_$(Build.BuildId).zip
+#- task: GithubRelease@0 
+#  displayName: 'Create GitHub Release'      
+#  inputs:
+#    gitHubConnection: ChromiumWebPageScreensaverConnection
+#    repositoryName: ZenProjects/Chromium-Web-Page-Screensaver
+#    tagSource: manual
+#    tag: $(Build.BuildNumber)      
+#    assets: |
+#         $(Build.ArtifactStagingDirectory)/ChromiumWebScreensaver_build_$(Build.BuildId).zip
