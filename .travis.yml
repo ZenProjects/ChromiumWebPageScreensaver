@@ -1,0 +1,10 @@
+language: csharp
+solution: WebpageScreensaver.sln
+install:
+  - nuget restore WebpageScreensaver.sln
+  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+script:
+  - msbuild /p:Configuration=Release WebpageScreensaver.sln
+#  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./WebpageScreensaver.Test/bin/Release/WebpageScreensaver.Test.dll --trace=Verbose
+#  - mono OpenCover.Console.exe -register:user -target:"./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe" -targetargs:"./MyProject.Tests/bin/Release/MyProject.Tests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
+#  - codecov -f "MyProject_coverage.xml" "93a81734-84ae-4432-9a05-8c523c674228"
