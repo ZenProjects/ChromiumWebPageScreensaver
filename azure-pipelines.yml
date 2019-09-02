@@ -26,3 +26,9 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+steps:
+- task: PublishPipelineArtifact@1
+  inputs:
+    path: $(System.DefaultWorkingDirectory)/bin/x86/Release
+    artifact: ChromiumWebScreensaver
