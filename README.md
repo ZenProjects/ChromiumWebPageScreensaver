@@ -12,6 +12,8 @@ Is a Fork of the old archived project [cwc/web-page-screensaver](https://github.
 
 ## Download and Install the last CI Build
 
+- ***[Download Latest Binary file](https://github.com/ZenProjects/Chromium-Web-Page-Screensaver/releases/latest/download/ChromiumWebScreensaver_binary.zip)***
+
 - click on `Azure Pipelines badges`
 - click on `Summary`
 - click on  `ChromiumWebScreensaver` link in `Build artifacts published` to donwload de zip build archive.
