@@ -42,7 +42,7 @@ steps:
     replaceExistingArchive: true 
     verbose: # Optional
     #quiet: # Optional
-     
+    
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'      
   inputs:
