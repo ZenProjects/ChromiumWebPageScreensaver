@@ -4,8 +4,8 @@ Is a Fork of old archived project [cwc/web-page-screensaver](https://github.com/
 
 ## Dependencies
 
-- [.NET Framework 4.5.2](https://www.microsoft.com/en-US/download/details.aspx?id=42642)
-- [(CEFSHARP)](https://github.com/cefsharp/CefSharp)
+- [.NET Framework v4.5.2+](https://www.microsoft.com/en-US/download/details.aspx?id=42642 ".NET Framework")
+- [CefSharp - Embedded Chromium for .NET v37+](https://cefsharp.github.io/ "CefSharp - Embedded Chromium for .NET")
 
 ## Usage (Windows 7 & up)
 
