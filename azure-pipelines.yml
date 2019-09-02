@@ -4,13 +4,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
 trigger:
-  tags:
-    include:
-    - v*
-  branches:
-    include:
-    - master
-
+- master
+- releases/*
 
 pool:
   vmImage: 'windows-latest'
