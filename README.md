@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/zen-projects/Chromium-Web-Page-Screensaver/_apis/build/status/ZenProjects.Chromium-Web-Page-Screensaver?branchName=master)](https://dev.azure.com/zen-projects/Chromium-Web-Page-Screensaver/_build/latest?definitionId=1&branchName=master)
+
 # Chromium Web Page Screensaver
 
 Is a Fork of the old archived project [cwc/web-page-screensaver](https://github.com/cwc/web-page-screensaver) that use Chromium [(using CefSharp WinForms)](https://github.com/cefsharp/CefSharp) in place of the old [IE 11 Embeded WinForms](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.webbrowser?view=netframework-4.8) to display web pages as your screensaver.
