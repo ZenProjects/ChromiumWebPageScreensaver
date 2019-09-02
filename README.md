@@ -12,7 +12,7 @@ Is a Fork of the old archived project [cwc/web-page-screensaver](https://github.
 
 ## Download and Install the last CI Build
 
-- Download the ***[Latest Binary file](https://github.com/ZenProjects/Chromium-Web-Page-Screensaver/releases/latest/download/ChromiumWebScreensaver_binary.zip)***
+- Download the ***[Lastest Chromium Web Screensaver binary](https://github.com/ZenProjects/Chromium-Web-Page-Screensaver/releases/latest)***
 - Unzip it
 - Find `Web-Page-Screensaver.scr` in the unziped directory, right click it
 - Select `Install` to install, or `Test` to test it out without installing it
